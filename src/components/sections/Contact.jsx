@@ -21,7 +21,7 @@ export const Contact = () => {
             </a>
           </p>
           <a
-            href="/Resume_Aditya_Agarwal.pdf"
+            href="../Resume_Aditya_Agarwal.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 bg-blue-500 text-white py-3 px-6 rounded font-medium transition hover:bg-blue-600"
