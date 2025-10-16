@@ -75,20 +75,34 @@ export const About = () => {
                   Relevant Coursework: Intro to Computer Org. I & II, CyberLaw and
                   Policy, Future of Security, Data Structures
                 </li>
+                <li>
+                  Extracurricular Activites: Member and Mentor of CyberVT (CyberSecurity Club at Virginia Tech)
+                  Member of Data Structures and Algorithms Club
+                  Participated in Marriott's CodeFest and VTHacks. (See GitHub for Projects)
+                </li>
               </ul>
             </div>
-
+                
             {/* Work Experience */}
             <div className="w-full h-full p-10 min-h-[350px] rounded-2xl border border-white/10 hover:-translate-y-1 transition-all">
               <h3 className="text-2xl font-bold mb-6">💼 Work Experience</h3>
               <div className="space-y-5 text-gray-300">
                 <div>
                   <h4 className="font-semibold">
-                    Undergraduate Teaching Assistant – CS 2505, Virginia Tech
+                    Undergraduate Teaching Assistant (CS 2505) - Virginia Tech
                   </h4>
                   <p className="text-sm italic text-gray-400 mb-1">Jan 2025 – Present</p>
                   <p>
                     Guide students in C and x86 assembly, assist with debugging, and explain concepts in memory management, pointers, and compiler behavior.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold">
+                    Software Engineering and CyberSecurity Intern – CloudFit Software
+                  </h4>
+                  <p className="text-sm italic text-gray-400 mb-1">June – August 2025</p>
+                  <p>
+                    Migrated an internal app from Ant Design to Material UI using C#, YAML, TypeScript, Elsa Workflows, SQL, Git, and Azure DevOps to enhance UI consistency and productivity; built a SharePoint onboarding page with PowerApps and PowerAutomate integration reducing onboarding time by 60%; and led weekly coding workshops for 30 interns and employees on Java, C#, TypeScript, and React to strengthen technical skills and collaboration.
                   </p>
                 </div>
                 <div>
@@ -98,15 +112,6 @@ export const About = () => {
                   <p className="text-sm italic text-gray-400 mb-1">June – August 2024</p>
                   <p>
                     Built and deployed four automation-driven applications using PowerApps, Power Automate, SharePoint, and Azure DevOps for enterprise productivity.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold">
-                    Software Engineering Intern – CloudFit Software
-                  </h4>
-                  <p className="text-sm italic text-gray-400 mb-1">June – August 2023</p>
-                  <p>
-                    Developed three new pages for internal business tools using C#, TypeScript, React, and Docker to support data migration for sales teams.
                   </p>
                 </div>
               </div>
