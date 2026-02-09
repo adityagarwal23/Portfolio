@@ -43,9 +43,7 @@ export const About = () => {
               languages, studying system behavior, and exploring the legal and ethical
               sides of cybersecurity.
               <br /><br />
-              I’m currently seeking a <strong>Summer 2026 internship</strong> where I
-              can grow as a developer, expand my knowledge of secure computing, and
-              contribute to a team that's building something meaningful.
+              I’m currently an incoming Software Engineering Intern at<strong> Wells Fargo.</strong>
             </p>
 
             <div className="rounded-xl p-6 hover:-translate-y-1 transition-all">
@@ -89,7 +87,7 @@ export const About = () => {
               <div className="space-y-5 text-gray-300">
                 <div>
                   <h4 className="font-semibold">
-                    Undergraduate Teaching Assistant (CS 2505) - Virginia Tech
+                    Undergraduate Teaching Assistant (CS 2505 & CS 2506) - Virginia Tech
                   </h4>
                   <p className="text-sm italic text-gray-400 mb-1">Jan 2025 – Present</p>
                   <p>
