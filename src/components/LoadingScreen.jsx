@@ -166,7 +166,7 @@ export const LoadingScreen = ({ onComplete }) => {
         }
       }, delay);
     });
-  }, [phase]);
+  }, [phase, onComplete]);
 
   return (
     <>
