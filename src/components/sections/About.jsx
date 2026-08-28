@@ -43,7 +43,7 @@ export const About = () => {
               languages, studying system behavior, and exploring the legal and ethical
               sides of cybersecurity.
               <br /><br />
-              I’m currently an incoming Software Engineering Intern at<strong> Wells Fargo</strong>.
+              I’ve previously interned at<strong> Wells Fargo</strong> as a software engineer.
             </p>
 
             <div className="rounded-lg p-6 hover:-translate-y-1">
