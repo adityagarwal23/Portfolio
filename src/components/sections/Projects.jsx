@@ -1,73 +1,68 @@
+import { ArrowIcon } from "../Icons";
 import { RevealOnScroll } from "../RevealOnScroll";
+import { SectionHeader } from "../SectionHeader";
 
-export const Projects = () => {
-  const projects = [
-    {
-      title: "ATM Machine",
-      description:
-        "Simulated a fully functional ATM system in Java, supporting account balance checking, cash withdrawals, deposits, and transaction history.",
-      impact:
-        "Allowed for a central app to track multiple accounts and expenses.",
-      tech: ["Java"],
-    },
-    {
-      title: "Restaurant Menu",
-      description:
-        "Developed a native Android restaurant menu application in Kotlin to digitize menus for small restaurants.",
-      impact:
-        "Eliminates the need for paper menus, with future iterations planned around food recommendations based on customer needs and preferences.",
-      tech: ["Kotlin", "Java"],
-    },
-  ];
+const projects = [
+  {
+    number: "01", date: "MAY 2024", category: "JAVA · SYSTEM SIMULATION", title: "ATM Machine",
+    description: "A Java ATM simulation with account balance checks, cash withdrawals, deposits, and transaction history, using built-in libraries for input, calculations, and data storage.",
+    impact: "Delivers the essential flow of a functional ATM in one Java application.", tech: ["Java"], visual: "atm",
+  },
+  {
+    number: "02", date: "DEC 2025", category: "ANDROID · MOBILE", title: "Restaurant Menu",
+    description: "A responsive native Android menu application in Kotlin that lets small restaurants update digital menu content instantly across Android devices.",
+    impact: "Supports 50+ menu items and can reduce paper waste by an estimated 50%.", tech: ["Kotlin"], visual: "phone",
+  },
+];
 
-  return (
-    <section
-      id="projects"
-      className="soft-section min-h-screen flex items-center justify-center px-4 py-28"
-    >
+const ProjectVisual = ({ type }) => type === "atm" ? (
+  <div className="project-visual atm-visual" aria-label="Stylized ATM terminal interface preview" role="img">
+    <div className="atm-shell">
+      <div className="atm-screen">
+        <div className="visual-topline"><span>ATM_OS 1.0</span><span className="online-dot">ONLINE</span></div>
+        <p className="atm-greeting">Welcome back.</p>
+        <div className="atm-balance"><span>AVAILABLE BALANCE</span><strong>$ ******</strong></div>
+        <div className="atm-actions"><span>Deposit</span><span>Withdraw</span><span>History</span></div>
+      </div>
+      <div className="atm-slot" /><div className="atm-keypad">{[1,2,3,4,5,6,7,8,9].map((n) => <i key={n}>{n}</i>)}</div>
+    </div>
+    <div className="visual-code" aria-hidden="true"><span>account.select()</span><span>transaction.verify()</span><span>balance.update()</span></div>
+  </div>
+) : (
+  <div className="project-visual phone-visual" aria-label="Stylized Android restaurant menu preview" role="img">
+    <div className="phone-frame">
+      <div className="phone-speaker" />
+      <div className="phone-screen">
+        <p className="phone-overline">TODAY'S MENU</p><h4>Fresh picks</h4>
+        <div className="menu-feature"><span>CHEF'S PICK</span><strong>Seasonal Plate</strong><i /></div>
+        <div className="menu-row"><i /><span><b>House Special</b><small>Featured selection</small></span><em>&gt;</em></div>
+        <div className="menu-row"><i /><span><b>Classic Favorite</b><small>Guest selection</small></span><em>&gt;</em></div>
+      </div>
+    </div>
+    <div className="phone-tags"><span>50+ items</span><span>~50% less paper</span></div>
+  </div>
+);
+
+export const Projects = () => (
+  <section id="projects" className="content-section projects-section">
+    <div className="page-container">
       <RevealOnScroll>
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
-            Featured Projects
-          </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-slate-600 dark:text-gray-400">
-            Practical builds with clear use cases, concise technical choices, and room to grow.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="group p-7 rounded-lg bg-white/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 shadow-sm dark:shadow-none hover:-translate-y-2 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10"
-              >
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-                    Built
-                  </span>
-                </div>
-                <p className="text-slate-600 dark:text-gray-400 mb-4">
-                  {project.description}
-                </p>
-                <p className="mb-4 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-sm text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
-                  <span className="text-blue-600 dark:text-blue-400">impact:</span>{" "}
-                  {project.impact}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-blue-500/10 text-blue-600 dark:text-blue-500 py-1 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.1)]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
+        <SectionHeader number="04" label="SELECTED WORK" title="Projects with a purpose." copy="Practical builds shaped around clear use cases, deliberate technical choices, and measurable outcomes." />
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <article className="project-card corner-frame" key={project.title}>
+              <ProjectVisual type={project.visual} />
+              <div className="project-content">
+                <div className="project-meta"><span>PROJECT / {project.number} · {project.date}</span><span>{project.category}</span></div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="project-impact"><span>OUTCOME</span>{project.impact}</div>
+                <div className="project-bottom"><div className="tech-list">{project.tech.map((tech) => <span key={tech}>{tech}</span>)}</div><span className="case-study-label">PROJECT DETAILS <ArrowIcon /></span></div>
+              </div>
+            </article>
+          ))}
         </div>
       </RevealOnScroll>
-    </section>
-  );
-};
+    </div>
+  </section>
+);

@@ -1,66 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { navItems } from "./navigation";
 
 export const Navbar = ({ menuOpen, setMenuOpen, theme, toggleTheme }) => {
+  const [activeSection, setActiveSection] = useState("home");
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  return (
-    <nav className="fixed top-0 w-full z-40 bg-white/75 dark:bg-black/55 backdrop-blur-2xl border-b border-slate-200/70 dark:border-white/10 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <a
-            href="#home"
-            className="font-mono text-xl font-bold text-slate-950 hover:text-blue-500 dark:text-white"
-          >
-            Aditya<span className="text-blue-500"> Agarwal</span>
-          </a>
+  useEffect(() => {
+    const sections = navItems.map(([id]) => document.getElementById(id)).filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -60%", threshold: [0, 0.2, 0.5] }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
+  return (
+    <nav className="site-nav" aria-label="Primary navigation">
+      <div className="page-container">
+        <div className="flex h-[72px] items-center justify-between">
+          <a href="#home" className="brand-mark" aria-label="Aditya Agarwal, home">
+            <span aria-hidden="true">&lt;</span>AA<span aria-hidden="true">/&gt;</span>
+          </a>
           <button
             type="button"
-            className="relative z-40 h-10 w-10 cursor-pointer rounded-full border border-slate-300 bg-white text-slate-900 shadow-sm md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Open menu"
+            className={"menu-toggle md:hidden " + (menuOpen ? "is-open" : "")}
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <span aria-hidden="true" className="text-xl">
-              =
-            </span>
+            <span /><span /><span />
           </button>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="nav-link text-slate-600 hover:text-slate-950 dark:text-gray-300 dark:hover:text-white"
-            >
-              Home
-            </a>
-            <a
-              href="#about"
-              className="nav-link text-slate-600 hover:text-slate-950 dark:text-gray-300 dark:hover:text-white"
-            >
-              About
-            </a>
-            <a
-              href="#projects"
-              className="nav-link text-slate-600 hover:text-slate-950 dark:text-gray-300 dark:hover:text-white"
-            >
-              Projects
-            </a>
-            <a
-              href="#contact"
-              className="nav-link text-slate-600 hover:text-slate-950 dark:text-gray-300 dark:hover:text-white"
-            >
-              Contact
-            </a>
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="h-9 w-9 rounded-full border border-slate-300 bg-white text-xs font-semibold text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-blue-400 hover:text-blue-500 dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:border-blue-500/50"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-              title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            >
-              {theme === "dark" ? "LT" : "DK"}
-            </button>
+          <div className="hidden items-center gap-6 md:flex">
+            {navItems.map(([id, label]) => (
+              <a key={id} href={"#" + id} className={"nav-link " + (activeSection === id ? "is-active" : "")} aria-current={activeSection === id ? "page" : undefined}>
+                {label}
+              </a>
+            ))}
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           </div>
         </div>
       </div>

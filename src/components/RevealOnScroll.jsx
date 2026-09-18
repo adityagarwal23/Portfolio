@@ -1,9 +1,14 @@
 import { useEffect, useRef } from "react";
 
-export const RevealOnScroll = ({ children }) => {
+export const RevealOnScroll = ({ children, className = "" }) => {
   const ref = useRef(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      ref.current?.classList.add("visible");
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -16,10 +21,10 @@ export const RevealOnScroll = ({ children }) => {
     if (ref.current) observer.observe(ref.current);
 
     return () => observer.disconnect();
-  });
+  }, []);
 
   return (
-    <div ref={ref} className="reveal">
+    <div ref={ref} className={"reveal " + className}>
       {children}
     </div>
   );

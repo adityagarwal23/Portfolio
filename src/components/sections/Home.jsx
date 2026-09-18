@@ -1,37 +1,63 @@
+import { useEffect, useState } from "react";
+import { ArrowIcon, GithubIcon, LinkedinIcon, LocationIcon, MailIcon } from "../Icons";
 import { RevealOnScroll } from "../RevealOnScroll";
 
+const commands = [
+  { command: "whoami", lines: ["CS @ Virginia Tech", "Secure Computing", "Software Engineer"] },
+  { command: "experience --latest", lines: ["Wells Fargo · SWE Intern", "CloudFit · SWE + Cybersecurity", "Virginia Tech · Teaching Assistant"] },
+  { command: "location", lines: ["Lynchburg, Virginia", "graduating: December 2026", "status: open to opportunities"] },
+];
+
 export const Home = () => {
+  const [commandIndex, setCommandIndex] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const timer = window.setInterval(() => setCommandIndex((index) => (index + 1) % commands.length), 3200);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const current = commands[commandIndex];
   return (
-    <section
-      id="home"
-      className="soft-section min-h-screen flex items-center justify-center relative px-4 pt-16"
-    >
-      <RevealOnScroll>
-        <div className="text-center z-10 mx-auto max-w-5xl px-4">
-          <h1 className="mb-6 inline-block overflow-visible pb-3 text-6xl font-bold leading-[1.15] bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent sm:text-7xl md:text-8xl">
-            Hi, I'm Aditya Agarwal
-          </h1>
-
-          <p className="text-slate-600 dark:text-gray-400 text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed">
-            I'm a Senior at Virginia Tech studying Computer Science with a focus in Cybersecurity and a minor in Mathematics.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="#projects"
-              className="rounded-full bg-blue-500 text-white py-3 px-7 font-medium shadow-lg shadow-blue-500/20 hover:-translate-y-1 hover:bg-blue-600 hover:shadow-blue-500/30"
-            >
-              View Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="rounded-full border border-slate-300 bg-white/70 text-slate-900 py-3 px-7 font-medium shadow-sm hover:-translate-y-1 hover:border-blue-500/50 hover:text-blue-600 hover:shadow-lg hover:shadow-blue-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:text-blue-300"
-            >
-              Contact Me
-            </a>
+    <section id="home" className="hero-section">
+      <div className="hero-orb hero-orb-one" aria-hidden="true" />
+      <div className="hero-orb hero-orb-two" aria-hidden="true" />
+      <div className="page-container hero-grid">
+        <RevealOnScroll className="hero-copy">
+          <div className="section-kicker"><span>[01]</span><span>HOME</span><span className="status-dot" /><span>GRADUATING DEC 2026</span></div>
+          <p className="hero-eyebrow">Computer Science / Secure Computing</p>
+          <h1>Aditya<br /><span>Agarwal.</span></h1>
+          <p className="hero-lede">Building useful software and understanding how systems break.</p>
+          <p className="hero-support">Virginia Tech computer science student specializing in Secure Computing with a minor in Mathematics.</p>
+          <div className="hero-actions">
+            <a href="#projects" className="button button-primary">View projects <ArrowIcon /></a>
+            <a href="#contact" className="button button-secondary">Contact me</a>
           </div>
-        </div>
-      </RevealOnScroll>
+          <div className="social-row" aria-label="Social and contact links">
+            <a href="https://github.com/adityagarwal23" target="_blank" rel="noopener noreferrer" aria-label="Aditya Agarwal on GitHub"><GithubIcon /> GitHub</a>
+            <a href="https://www.linkedin.com/in/aditya-agarwal-433630243" target="_blank" rel="noopener noreferrer" aria-label="Aditya Agarwal on LinkedIn"><LinkedinIcon /> LinkedIn</a>
+            <a href="mailto:adityagarwal05@gmail.com" aria-label="Email Aditya Agarwal"><MailIcon /> Email</a>
+          </div>
+          <p className="hero-location"><LocationIcon /> Lynchburg, Virginia</p>
+        </RevealOnScroll>
+        <RevealOnScroll className="terminal-wrap">
+          <div className="terminal-card corner-frame" aria-label="Animated terminal profile">
+            <div className="terminal-bar">
+              <div className="terminal-dots" aria-hidden="true"><span /><span /><span /></div>
+              <span>identity.sh</span><span>SECURE</span>
+            </div>
+            <div className="terminal-body" aria-live="polite">
+              <p className="terminal-path">aditya@portfolio:<span>~</span>$ <strong>{current.command}</strong></p>
+              <div key={current.command} className="terminal-output">
+                {current.lines.map((line) => <p key={line}><span className="terminal-chevron">&gt;</span>{line}</p>)}
+              </div>
+              <p className="terminal-prompt">aditya@portfolio:<span>~</span>$ <i className="terminal-cursor" /></p>
+            </div>
+            <div className="terminal-footer"><span>SESSION 01</span><span>ENCRYPTED CONNECTION</span></div>
+          </div>
+        </RevealOnScroll>
+      </div>
+      <a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><i /></a>
     </section>
   );
 };
