@@ -8,6 +8,7 @@ import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
 import { Contact } from "./components/sections/Contact";
+import { ScrollTools } from "./components/ScrollTools";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(() => {
@@ -39,13 +40,17 @@ function App() {
   return (
     <>
       {!isLoaded && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <div className={"site-shell min-h-screen overflow-x-hidden transition-opacity duration-700 " + (isLoaded ? "opacity-100" : "opacity-0")}>
+      <div inert={!isLoaded} className={"site-shell min-h-screen overflow-x-hidden transition-opacity duration-700 " + (isLoaded ? "opacity-100" : "opacity-0")}>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} theme={theme} toggleTheme={toggleTheme} />
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} theme={theme} toggleTheme={toggleTheme} />
+        <main id="main-content" tabIndex={-1}>
         <Home />
         <About />
         <Projects />
         <Contact />
+        </main>
+        <ScrollTools />
       </div>
     </>
   );

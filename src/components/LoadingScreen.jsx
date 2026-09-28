@@ -6,8 +6,8 @@ export const LoadingScreen = ({ onComplete }) => {
   const [lineCount, setLineCount] = useState(0);
 
   useEffect(() => {
-    const timers = logs.map((_, index) => window.setTimeout(() => setLineCount(index + 1), 350 + index * 300));
-    timers.push(window.setTimeout(() => onComplete?.(), 1900));
+    const timers = logs.map((_, index) => window.setTimeout(() => setLineCount(index + 1), 100 + index * 150));
+    timers.push(window.setTimeout(() => onComplete?.(), 850));
     return () => timers.forEach(window.clearTimeout);
   }, [onComplete]);
 

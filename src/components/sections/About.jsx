@@ -13,6 +13,8 @@ const roles = [
     dates: "JUN - AUG 2026",
     location: "Charlotte, North Carolina",
     company: "Wells Fargo",
+    logo: "wells-fargo.png", brand: "wells-fargo",
+    technologies: ["TypeScript", "Power Apps Code Apps", "Copilot Studio"],
     role: "Software Engineering Intern",
     bullets: [
       "Built an internal onboarding application with TypeScript and Power Apps Code Apps that automated Copilot Studio environment provisioning.",
@@ -25,6 +27,8 @@ const roles = [
     dates: "JAN 2025 - PRESENT",
     location: "Blacksburg, Virginia",
     company: "Virginia Tech",
+    logo: "virginia-tech.svg", brand: "virginia-tech",
+    technologies: ["C", "x86 Assembly", "RISC-V", "GDB", "GCC"],
     role: "Undergraduate Teaching Assistant · CS 2505 & CS 2506",
     bullets: [
       "Guide students through C, x86 and RISC-V assembly, virtual memory, and processor architecture using GDB and GCC.",
@@ -36,6 +40,8 @@ const roles = [
     dates: "JUN - AUG 2025",
     location: "Lynchburg, Virginia",
     company: "CloudFit Software",
+    logo: "cloudfit.svg", brand: "cloudfit",
+    technologies: ["TypeScript", "C#", "React", "SQL", "Material UI", "Azure DevOps", "Power Apps", "Power Automate"],
     role: "Software Engineering & Cybersecurity Intern",
     bullets: [
       "Migrated an internal application from Ant Design to Material UI using C#, YAML, TypeScript, Elsa Workflows, SQL, Git, and Azure DevOps.",
@@ -96,8 +102,19 @@ export const About = () => (
                 <div className="timeline-date">{item.dates}</div>
                 <div className="timeline-node" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span></div>
                 <div className="timeline-content">
-                  <div className="timeline-heading"><p className="timeline-company">{item.company}</p><p className="timeline-location">{item.location}</p></div>
-                  <h3>{item.role}</h3>
+                  <div className="experience-heading">
+                    <div className={`company-logo company-logo--${item.brand}`}>
+                      <img src={import.meta.env.BASE_URL + "logos/" + item.logo} alt="" width="52" height="52" loading="lazy" decoding="async" />
+                    </div>
+                    <div className="experience-heading-copy">
+                      <div className="timeline-heading"><p className="timeline-company">{item.company}</p><p className="timeline-location">{item.location}</p></div>
+                      <h3>{item.role}</h3>
+                    </div>
+                  </div>
+                  <div className="experience-technologies" role="group" aria-label={`Technologies used at ${item.company}`}>
+                    <span className="experience-stack-label">TECH STACK</span>
+                    <div className="experience-tech-tags">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div>
+                  </div>
                   {item.metrics && <div className="metric-row">{item.metrics.map((metric) => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}</div>}
                   <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
                 </div>

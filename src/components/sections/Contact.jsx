@@ -1,5 +1,6 @@
 import { ArrowIcon, GithubIcon, LinkedinIcon, LocationIcon, MailIcon, PhoneIcon } from "../Icons";
 import { RevealOnScroll } from "../RevealOnScroll";
+import { CopyEmail } from "../CopyEmail";
 
 export const Contact = () => (
   <>
@@ -22,6 +23,7 @@ export const Contact = () => (
               <a href="tel:+14342290618"><PhoneIcon /> 434-229-0618</a>
               <span><LocationIcon /> Lynchburg, Virginia</span>
             </div>
+            <CopyEmail />
           </div>
         </RevealOnScroll>
       </div>
