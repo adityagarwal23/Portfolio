@@ -138,7 +138,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
 .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 28px; align-items: stretch; }
 .education-card, .skills-panel { border: 1px solid var(--line); background: var(--surface); }
 .education-card { display: grid; grid-template-columns: 92px 1fr; gap: 28px; padding: clamp(28px, 4vw, 48px); }
-.education-mark { display: grid; place-items: center; width: 82px; height: 82px; border: 1px solid var(--line-strong); background: linear-gradient(135deg, rgba(14, 165, 233, .14), rgba(34, 211, 238, .03)); color: var(--blue); font-family: var(--mono); font-size: 1.5rem; font-weight: 700; }
+.education-mark { display: grid; place-items: center; width: 82px; height: 82px; border: 1px solid rgba(20, 54, 88, .12); border-radius: 10px; background: #861f41; }
+.education-mark img { display: block; width: 74%; height: 74%; object-fit: contain; }
 .education-card h3 { margin: 10px 0 0; font-size: 1.75rem; line-height: 1.1; }.education-school { margin: 6px 0 2px; color: var(--text) !important; font-size: 1.08rem !important; font-weight: 650; }
 .education-card p { margin: 0; color: var(--muted); font-size: .92rem; }
 .coursework { display: flex; flex-wrap: wrap; gap: 7px; margin: 25px 0; }.coursework span, .tech-list span { border: 1px solid var(--line); background: var(--bg-alt); color: var(--muted); font-family: var(--mono); font-size: .65rem; padding: 6px 9px; }
@@ -292,6 +293,8 @@ input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
 .skill-group > div { gap: 8px 14px; }
 .skill-group span { transition: color .2s; }
 .skill-group span:hover { color: var(--blue); }
+.skill-item { display: inline-flex; align-items: center; gap: 7px; min-height: 24px; }
+.skill-logo { display: block; flex: 0 0 18px; width: 18px; height: 18px; object-fit: contain; }
 .project-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: -16px 0 28px; }
 .project-toolbar > p { color: var(--muted); font-family: var(--mono); font-size: .62rem; }
 .project-filters { display: flex; flex-wrap: wrap; gap: 6px; }

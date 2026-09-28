@@ -1,8 +1,30 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import { SectionHeader } from "../SectionHeader";
+import { GithubIcon } from "../Icons";
+
+const skillLogos = {
+  Python: "python",
+  Java: "java",
+  "C#": "csharp",
+  HTML5: "html5",
+  CSS: "css3",
+  JavaScript: "javascript",
+  TypeScript: "typescript",
+  "VS Code": "vscode",
+  Eclipse: "eclipse",
+  "IntelliJ IDEA": "intellij",
+  "Azure DevOps": "azuredevops",
+  Jira: "jira",
+  "Power Apps": "powerapps",
+  "Power Automate": "powerautomate",
+  "Copilot Studio": "copilotstudio",
+  Windows: "windows11",
+  Linux: "linux",
+  "CompTIA ITF+": "comptia",
+};
 
 const skillGroups = [
-  { label: "LANGUAGES", skills: ["Python", "Java", "C#", "HTML5 / CSS", "JavaScript", "TypeScript"] },
+  { label: "LANGUAGES", skills: ["Python", "Java", "C#", "HTML5", "CSS", "JavaScript", "TypeScript"] },
   { label: "DEVELOPER TOOLS", skills: ["VS Code", "Eclipse", "IntelliJ IDEA", "Azure DevOps", "Jira"] },
   { label: "POWER PLATFORM", skills: ["Power Apps", "Power Automate", "Copilot Studio"] },
   { label: "TECH + CERTIFICATION", skills: ["Windows", "Linux", "GitHub", "CompTIA ITF+"] },
@@ -60,7 +82,9 @@ export const About = () => (
           <SectionHeader number="02" label="ABOUT" title="Curious by design. Security-minded by default." copy="I work at the intersection of software engineering and cybersecurity - building practical tools, examining system behavior, and learning how thoughtful design makes technology safer." />
           <div className="about-grid">
             <article className="education-card corner-frame">
-              <div className="education-mark" aria-hidden="true">VT</div>
+              <div className="education-mark" aria-hidden="true">
+                <img src={import.meta.env.BASE_URL + "logos/virginia-tech.svg"} alt="" width="60" height="60" loading="lazy" decoding="async" />
+              </div>
               <div>
                 <p className="micro-label">EDUCATION // AUG 2023 - DEC 2026</p>
                 <h3>B.S. Computer Science</h3>
@@ -76,7 +100,13 @@ export const About = () => (
               {skillGroups.map((group) => (
                 <div className="skill-group" key={group.label}>
                   <h3>{group.label}</h3>
-                  <div>{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+                  <div>{group.skills.map((skill) => (
+                    <span className="skill-item" key={skill}>
+                      {skillLogos[skill] && <img className="skill-logo" src={import.meta.env.BASE_URL + "logos/technologies/" + skillLogos[skill] + ".svg"} alt="" width="18" height="18" loading="lazy" decoding="async" />}
+                      {skill === "GitHub" && <GithubIcon className="skill-logo" />}
+                      {skill}
+                    </span>
+                  ))}</div>
                 </div>
               ))}
             </div>

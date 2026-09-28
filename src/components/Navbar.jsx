@@ -29,7 +29,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, theme, toggleTheme }) => {
       <div className="page-container">
         <div className="flex h-[72px] items-center justify-between">
           <a href="#home" className="brand-mark" aria-label="Aditya Agarwal, home">
-            <span aria-hidden="true">&lt;</span>AA<span aria-hidden="true">/&gt;</span>
+            <span aria-hidden="true">&lt;</span>adityaagarwal <span aria-hidden="true">/&gt;</span>
           </a>
           <button
             type="button"
